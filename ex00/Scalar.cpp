@@ -22,6 +22,17 @@ bool ScalarConverter::isvalidint(double value) {
 	value >= std::numeric_limits<int>::min()));
 }
 
+bool ScalarConverter::parseChar(const std::string& input, double& value) {
+	int size = input.length();
+	if (size == 3 && input[0] == '\'' && input[2] == '\'') 
+	{
+		char c = input[1];
+		value = static_cast<double>(c);
+		return (true);
+	}
+	return (false);
+}
+
 bool ScalarConverter::parseinput(const std::string& input, double& value) {
 	if (parseChar(input, value))
 		return (true);
@@ -35,17 +46,6 @@ bool ScalarConverter::parseinput(const std::string& input, double& value) {
 		return (true);
 	return (false);
 }
-bool ScalarConverter::parseChar(const std::string& input, double& value) {
-	int size = input.length();
-	if (size == 3 && input[0] == '\'' && input[2] == '\'') 
-	{
-		char c = input[1];
-		value = static_cast<double>(c);
-		return (true);
-	}
-	return (false);
-}
-
 bool ScalarConverter::parseSpecial(const std::string& input, double& value) {
 	if (input == "nan" || input == "nanf") 
 	{
