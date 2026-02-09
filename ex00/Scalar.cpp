@@ -24,6 +24,11 @@ bool ScalarConverter::isvalidint(double value) {
 
 bool ScalarConverter::parseChar(const std::string& input, double& value) {
 	int size = input.length();
+	if (size == 1 && !std::isdigit(static_cast<unsigned char>(input[0])))
+	{
+		value = static_cast<double>(input[0]);
+		return (true);
+	}
 	if (size == 3 && input[0] == '\'' && input[2] == '\'') 
 	{
 		char c = input[1];
@@ -170,6 +175,12 @@ void ScalarConverter::convert(const std::string& input) {
 	double value = 0.0;
 	
 	if (!parseinput(input, value)) {
+		for (std::string::size_type i = 0; i < input.length(); ++i) {
+			if (std::isalpha(static_cast<unsigned char>(input[i]))) {
+				std::cout << "Invalid input" << std::endl;
+				return ;
+			}
+		}
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: impossible" << std::endl;
