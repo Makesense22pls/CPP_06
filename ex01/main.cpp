@@ -3,14 +3,14 @@
 #include "Data.hpp"
 
 int main(void) {
-	Data data;
-	data.id = 42;
-	data.name = "Test";
-	data.value = 3.14;
+	Data test;
+	test.id = 67;
+	test.name = "Test";
+	test.value = 3.21;
 
-	std::cout << "Original pointer: " << &data << std::endl;
+	std::cout << "Original pointer: " << &test << std::endl;
 	
-	uintptr_t serialized = Serializer::serialize(&data);
+	uintptr_t serialized = Serializer::serialize(&test);
 	std::cout << " After serializer (int):  " << serialized << std::endl;
 	
 	Data	*deserialized = Serializer::deserialize(serialized);

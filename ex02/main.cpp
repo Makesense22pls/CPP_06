@@ -43,16 +43,21 @@ void identify(Base &p) {
 		std::cout << "B" << std::endl;
 		return ;
 	}
-	catch (...) {}
+	catch (...) {
+
+	}
 	
 	try {
 		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
 	}
-	catch (...) {}
+	catch (...) {
+
+	}
 }
 
-int main(void) {
+int main(void) 
+{
 	srand(time(NULL));
 
 	std::cout << " 10 random objects:" << std::endl;
